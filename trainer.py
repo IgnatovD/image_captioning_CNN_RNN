@@ -2,7 +2,7 @@ import torch
 from nltk.translate.bleu_score import corpus_bleu
 
 
-def get_blue(logits, captions):
+def get_blue(logits, captions, tokenizer):
     predict = torch.argmax(logits, -1)
 
     sentences = []
@@ -19,7 +19,7 @@ def get_blue(logits, captions):
     return corpus_bleu(sentences, targets)
 
 
-def train(model, dataloader, optimizer, criterion, clip, device):
+def train(model, dataloader, optimizer, criterion, clip, device, tokenizer):
     model.train()
     epoch_loss = 0.
     blue = 0.
@@ -37,7 +37,7 @@ def train(model, dataloader, optimizer, criterion, clip, device):
         # [seq_len, bs, vocab_size]
         logits = model(image_vectors, captions)
 
-        blue += get_blue(logits, captions)
+        blue += get_blue(logits, caption, tokenizer)
 
         # [len_seq - 1 * bs, vocab_size]
         logits = logits[1:].contiguous().view(-1, logits.shape[-1])
@@ -61,7 +61,7 @@ def train(model, dataloader, optimizer, criterion, clip, device):
     return train_loss, blue_mean
 
 
-def evaluate(model, dataloader, criterion, device):
+def evaluate(model, dataloader, criterion, device, tokenizer):
     model.eval()
     epoch_loss = 0
     blue = 0.
@@ -74,7 +74,7 @@ def evaluate(model, dataloader, criterion, device):
 
             logits = model(image_vectors, captions)
 
-            blue += get_blue(logits, captions)
+            blue += get_blue(logits, captions, tokenizer)
 
             logits = logits[1:].contiguous().view(-1, logits.shape[-1])
 
