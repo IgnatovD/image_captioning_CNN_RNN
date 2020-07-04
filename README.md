@@ -8,4 +8,4 @@
 A neural network built on the CNN and RNN architectures. The CNN model encodes the original image, and the RNN generates a description for the image.
 
 ### Tutorials
-- [Create image captioning ](./examples/ruWiki.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IgnatovD/ruBart/blob/master/examples/ruWiki.ipynb)
+- [Create image captioning ](./example/image_captioning.ipynb) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/IgnatovD/image_captioning_CNN_RNN/blob/master/example/image_captioning.ipynb)
