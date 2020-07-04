@@ -1,6 +1,5 @@
 import torch
 from nltk.translate.bleu_score import corpus_bleu
-from nltk.translate.bleu_score import SmoothingFunction
 
 def get_blue(logits, captions, tokenizer):
     predict = torch.argmax(logits, -1)
@@ -16,7 +15,7 @@ def get_blue(logits, captions, tokenizer):
         sentences.append([sentence])
         targets.append(target)
 
-    return corpus_bleu(sentences, targets, smoothing_function=SmoothingFunction().method1)
+    return corpus_bleu(sentences, targets)
 
 
 def train(model, dataloader, optimizer, criterion, clip, device, tokenizer, captions):
