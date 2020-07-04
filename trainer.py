@@ -19,7 +19,7 @@ def get_blue(logits, captions):
     return corpus_bleu(sentences, targets)
 
 
-def train(model, dataloader, optimizer, criterion, clip):
+def train(model, dataloader, optimizer, criterion, clip, device):
     model.train()
     epoch_loss = 0.
     blue = 0.
@@ -61,7 +61,7 @@ def train(model, dataloader, optimizer, criterion, clip):
     return train_loss, blue_mean
 
 
-def evaluate(model, dataloader, criterion):
+def evaluate(model, dataloader, criterion, device):
     model.eval()
     epoch_loss = 0
     blue = 0.
