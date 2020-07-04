@@ -85,7 +85,7 @@ class ImgCap(nn.Module):
             input = (captions[t] if teacher_force else top1)
         return outputs
 
-    def generate_one_example(self, image, inception):
+    def generate_one_example(self, image, inception, tokenizer):
 
         image = torch.tensor(image.transpose([2, 0, 1]), dtype=torch.float32)
 

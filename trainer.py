@@ -20,8 +20,8 @@ def get_blue(logits, captions, tokenizer):
 
 def train(model, dataloader, optimizer, criterion, clip, device, tokenizer, captions):
     model.train()
-    epoch_loss = 0.
     blue = 0.
+    epoch_loss = 0.
 
     for batch in dataloader:
         # [bs, image_vec]
@@ -62,8 +62,8 @@ def train(model, dataloader, optimizer, criterion, clip, device, tokenizer, capt
 
 def evaluate(model, dataloader, criterion, device, tokenizer, captions):
     model.eval()
-    epoch_loss = 0
     blue = 0.
+    epoch_loss = 0
 
     with torch.no_grad():
         for batch in dataloader:
