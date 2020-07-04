@@ -37,7 +37,7 @@ def train(model, dataloader, optimizer, criterion, clip, device, tokenizer, capt
         # [seq_len, bs, vocab_size]
         logits = model(image_vectors, captions)
 
-        blue += get_blue(logits, caption, tokenizer)
+        blue += get_blue(logits, captions, tokenizer)
 
         # [len_seq - 1 * bs, vocab_size]
         logits = logits[1:].contiguous().view(-1, logits.shape[-1])
