@@ -100,7 +100,7 @@ class ImgCap(nn.Module):
         input = torch.tensor([tokenizer.token_to_id('[CLS]')]).to(self.device)
 
         for t in range(1, self.max_len):
-            output, hidden, cell = decoder(input, hidden, cell)
+            output, hidden, cell = self.decoder(input, hidden, cell)
             top1 = output.max(0)[1]
             outputs.append(top1)
             input = (top1.unsqueeze(0))
