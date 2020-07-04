@@ -19,7 +19,7 @@ def get_blue(logits, captions, tokenizer):
     return corpus_bleu(sentences, targets)
 
 
-def train(model, dataloader, optimizer, criterion, clip, device, tokenizer):
+def train(model, dataloader, optimizer, criterion, clip, device, tokenizer, captions):
     model.train()
     epoch_loss = 0.
     blue = 0.
@@ -61,7 +61,7 @@ def train(model, dataloader, optimizer, criterion, clip, device, tokenizer):
     return train_loss, blue_mean
 
 
-def evaluate(model, dataloader, criterion, device, tokenizer):
+def evaluate(model, dataloader, criterion, device, tokenizer, captions):
     model.eval()
     epoch_loss = 0
     blue = 0.
